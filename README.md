@@ -24,3 +24,16 @@ fn main() {
     let filename = &args[2];
 }
 ```
+
+#### Step 2: Reading a File
+
+```rust
+use std::fs;
+
+fn main() {
+    let contents =
+        fs::read_to_string("poem.txt").expect("Something went wrong while reading the file");
+
+    println!("contents of poem {}", contents);
+}
+```
