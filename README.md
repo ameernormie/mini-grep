@@ -9,3 +9,18 @@
 - Handling errors
 - Using traits and lifetimes where appropriate
 - Writing tests
+
+#### Step 1: Accepting Command Line Arguments
+
+Read the command line arguments using the function provided by the Rust's standard library using `std::env::args`. This function returns an iterator of the command line arguments. We can call `collect` method on the iterator to turn it into a collection, such as a vector.
+
+```rust
+use std::env;
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let query = &args[1];
+    let filename = &args[2];
+}
+```
