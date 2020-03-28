@@ -38,9 +38,7 @@ fn main() {
 }
 ```
 
----
-
-### Separation of Concerns for Binary Projects
+#### Step 3: Separation of Concerns for Binary Projects
 
 Rust community has developed a process to use as a guideline for splitting the separate concerns of a binary program when main starts getting large. The process has the following steps:
 
@@ -54,3 +52,14 @@ The responsibilities that remain in the main function after this process should 
 2. Setting up any other configuration
 3. Calling a run function in `lib.rs`
 4. Handling the error if run returns an error
+
+#### Step 4: Test driven development
+
+We’ll add the searching logic to the minigrep program by using the `Test-driven development (TDD)` process. This software development technique follows these steps:
+
+1. Write a test that fails and run it to make sure it fails for the reason you expect.
+2. Write or modify just enough code to make the new test pass.
+3. Refactor the code you just added or changed and make sure the tests continue to pass.
+4. Repeat from step 1!
+
+We’ll test drive the implementation of the functionality that will actually do the searching for the query string in the file contents and produce a list of lines that match the query. We’ll add this functionality in a function called `search`.
