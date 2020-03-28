@@ -1,4 +1,5 @@
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
 
@@ -11,12 +12,14 @@ fn main() {
         process::exit(1);
     });
 
-    #[allow(unused_variables)]
-    let contents =
-        fs::read_to_string("poem.txt").expect("Something went wrong while reading the file");
-
     println!("query is {}", config.query);
     println!("filename is {}", config.filename);
+
+    if let Err(e) = run(config) {
+        println!("Application error: {}", e);
+
+        process::exit(1);
+    }
 }
 
 #[derive(Debug)]
@@ -37,4 +40,14 @@ impl Config {
 
         Ok(Config { query, filename })
     }
+}
+
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.filename)?;
+
+    println!("With text:\n{}", contents);
+
+    // using () like this is the idiomatic way to indicate that we’re calling run
+    // for its side effects only; it doesn’t return a value we need.
+    Ok(())
 }
